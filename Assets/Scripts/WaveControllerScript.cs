@@ -1,12 +1,18 @@
+using NavMeshPlus.Components;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WaveControllerScript : MonoBehaviour
 {
+    private NavMeshSurface surface;
     public GameObject Zombie;
     public float timer;
     [SerializeField] bool obstructed = false;
+
+    public float nearestSpawnRadius = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,11 +55,15 @@ public class WaveControllerScript : MonoBehaviour
 
     }
     public IEnumerator AutoWave()
+    {
+        if (!obstructed && NavMesh.SamplePosition(gameObject.transform.position, out NavMeshHit hit, nearestSpawnRadius, NavMesh.AllAreas))
         {
-            if (obstructed == false) {Instantiate(Zombie, gameObject.transform);}
-            gameObject.transform.DetachChildren();
-            float timer2 = Random.Range(timer - 2.5f, timer + 2.6f);
-            yield return new WaitForSeconds(timer2);
-            StartCoroutine(nameof(AutoWave));
+            Instantiate(Zombie, hit.position, Quaternion.identity, gameObject.transform);
         }
+
+        gameObject.transform.DetachChildren();
+        float timer2 = Random.Range(timer - 2.5f, timer + 2.6f);
+        yield return new WaitForSeconds(timer2);
+        StartCoroutine(nameof(AutoWave));
+    }
 }
