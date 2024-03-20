@@ -28,13 +28,10 @@ public class CameraBehavior : MonoBehaviour
 
     [SerializeField]
     private Transform xEndPoint;
-
     [SerializeField]
     private Transform xStartPoint;
-
     [SerializeField]
     private Transform yEndPoint;
-
     [SerializeField]
     private Transform yStartPoint;
 
@@ -47,28 +44,85 @@ public class CameraBehavior : MonoBehaviour
     [SerializeField]
     private GameObject parent;
 
+
+    Vector3 cameraScale = new Vector3(3.5f, 2);
+    Vector3 unboundedPosition;
+    Vector3 targetPos;
+    Vector3 unCapTargetPos;
+    [SerializeField]
+    CameraBounds bounds, softBounds;
+    [SerializeField]
+    bool boundsEnabled = false;
+
+
     private void Update()
     {
         if (player != null && parent != null)
         {
+            Vector3 dif= player.position - parent.transform.position;
+            if (boundsEnabled && targetPos.x != unCapTargetPos.x)
+            {
+                dif.x = 0;
+            }
+            if (boundsEnabled && targetPos.y != unCapTargetPos.y)
+            {
+                dif.y = 0;
+            }
+            unboundedPosition += dif;
             parent.transform.position = player.position;
         }
-
         if (targets.Count > 0)
         {
             Vector3 midpoint = GetMidpointOfPoints(targets);
 
-            Debug.Log(midpoint);
+            //Debug.Log(midpoint);
 
             parent.transform.position = Vector3.Lerp(parent.transform.position, midpoint, globalCamSpeed * Time.deltaTime);
         }
 
-        transform.localPosition = new Vector3(Mathf.Lerp(transform.localPosition.x, Mathf.Lerp(xStartPoint.localPosition.x, xEndPoint.localPosition.x, Input.mousePosition.x / (float)Screen.width), fractionOfJourney),
-                                              Mathf.Lerp(transform.localPosition.y, Mathf.Lerp(yStartPoint.localPosition.y, yEndPoint.localPosition.y, Input.mousePosition.y / (float)Screen.height), fractionOfJourney),
-                                              transform.localPosition.z);
 
+        if (boundsEnabled)
+        {
+            unCapTargetPos = new Vector3(Mathf.Lerp(xStartPoint.position.x, xEndPoint.position.x, Input.mousePosition.x / (float)Screen.width),
+                            Mathf.Lerp(yStartPoint.position.y, yEndPoint.position.y, Input.mousePosition.y / (float)Screen.height),
+                            transform.position.z);
+            targetPos = unCapTargetPos;
+
+            targetPos.x = Mathf.Clamp(targetPos.x, softBounds.xMin, softBounds.xMax);
+            targetPos.y = Mathf.Clamp(targetPos.y, softBounds.yMin, softBounds.yMax);
+            unboundedPosition = Vector3.Lerp(unboundedPosition, targetPos, fractionOfJourney);
+            transform.position = new Vector3(
+                Mathf.Clamp(unboundedPosition.x, bounds.xMin, bounds.xMax),
+                Mathf.Clamp(unboundedPosition.y, bounds.yMin, bounds.yMax),
+                transform.position.z);
+        }
+        else
+        {
+            unboundedPosition = new Vector3(Mathf.Lerp(unboundedPosition.x, Mathf.Lerp(xStartPoint.position.x, xEndPoint.position.x, Input.mousePosition.x / (float)Screen.width), fractionOfJourney),
+                                                  Mathf.Lerp(unboundedPosition.y, Mathf.Lerp(yStartPoint.position.y, yEndPoint.position.y, Input.mousePosition.y / (float)Screen.height), fractionOfJourney),
+                                                  transform.position.z);
+            transform.position = unboundedPosition;
+        }
     }
 
+    public void EnableConstraints(CameraBounds bounds, CameraBounds softBounds)
+    {
+        bounds.xMin += cameraScale.x;
+        bounds.xMax -= cameraScale.x;
+        bounds.yMin += cameraScale.y;
+        bounds.yMax -= cameraScale.y;
+        this.bounds = bounds;
+        softBounds.xMin += cameraScale.x;
+        softBounds.xMax -= cameraScale.x;
+        softBounds.yMin += cameraScale.y;
+        softBounds.yMax -= cameraScale.y;
+        this.softBounds = softBounds;
+        boundsEnabled = true;
+    }
+    public void DisableConstraints()
+    {
+        boundsEnabled = false;
+    }
 
     private Vector3 GetMidpointOfPoints(List<targetPriority> targets)
     {
@@ -103,5 +157,20 @@ public class CameraBehavior : MonoBehaviour
         Gizmos.color = new Color(0, 0, 255, 0);
 
         Gizmos.DrawSphere(GetMidpointOfPoints(targets), 1);
+
+        Gizmos.color = new Color(255, 0, 0, 0.3f);
+        Gizmos.DrawCube(new Vector3(bounds.xMin, bounds.yMin), new Vector3(1,1,1));
+        Gizmos.DrawCube(new Vector3(bounds.xMax, bounds.yMin), new Vector3(1, 1, 1));
+        Gizmos.DrawCube(new Vector3(bounds.xMin, bounds.yMax), new Vector3(1, 1, 1));
+        Gizmos.DrawCube(new Vector3(bounds.xMax, bounds.yMax), new Vector3(1, 1, 1));
+        Gizmos.color = new Color(255, 255, 0, 0.3f);
+        Gizmos.DrawCube(new Vector3(softBounds.xMin, softBounds.yMin), new Vector3(1, 1, 1));
+        Gizmos.DrawCube(new Vector3(softBounds.xMax, softBounds.yMin), new Vector3(1, 1, 1));
+        Gizmos.DrawCube(new Vector3(softBounds.xMin, softBounds.yMax), new Vector3(1, 1, 1));
+        Gizmos.DrawCube(new Vector3(softBounds.xMax, softBounds.yMax), new Vector3(1, 1, 1));
+        Gizmos.color = new Color(0, 0, 255, 0.3f);
+        Gizmos.DrawCube((Vector3)targetPos, new Vector3(1, 1, 1));
+        Gizmos.color = new Color(0, 255, 255, 0.3f);
+        Gizmos.DrawCube(unCapTargetPos, new Vector3(1, 1, 1));
     }
 }
