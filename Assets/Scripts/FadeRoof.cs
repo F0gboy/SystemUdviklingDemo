@@ -6,36 +6,29 @@ using UnityEngine;
 public class FadeRoof : MonoBehaviour
 {
     private GameObject Player;
-    private SpriteRenderer Roof;
-    
+    private MeshRenderer Roof;
+
     private void Start()
     {
         Player = GameObject.Find("Player");
-        Roof = GetComponent<SpriteRenderer>();
+        Roof = GetComponent<MeshRenderer>();
     }
-    
+
     void Update()
     {
-        float fadeOut = Vector3.Distance(Player.transform.position, transform.position);
+        float distance = Vector3.Distance(Player.transform.position, transform.position);
+        
+        // Define the minimum and maximum distances
+        float minDistance = 6f;
+        float maxDistance = 8f;
 
+        // Normalize the distance to a 0-1 range where 0 is at minDistance and 1 is at maxDistance
+        float normalizedDistance = Mathf.Clamp01((distance - minDistance) / (maxDistance - minDistance));
 
-        if (fadeOut < 14.5F)
-        {
-            Roof.color = Color.Lerp(new Color(0, 0, 0, 0), new Color(1, 1, 1, 1), (((fadeOut-4.5f) / 10)));
-        }
+        // Directly use the normalized distance to calculate the alpha
+        float alpha = normalizedDistance;
 
-        //    if (fadeOut < 8F)
-        //    {
-        //         Roof.color = new Color(Roof.color.r, Roof.color.g, Roof.color.b, 0f); 
-        //    }
-        //    else
-        //    {
-        //        Roof.color = new Color(Roof.color.r, Roof.color.g, Roof.color.b, 0 +(fadeOut / 10f)); 
-        //    }
-        //}
-        //else
-        //{
-        //    Roof.color = new Color(Roof.color.r, Roof.color.g, Roof.color.b, 1f); 
-        //}
+        // Update the roof's material color with the new alpha
+        Roof.material.color = new Color(Roof.material.color.r, Roof.material.color.g, Roof.material.color.b, alpha);
     }
 }
