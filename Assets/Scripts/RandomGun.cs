@@ -47,24 +47,22 @@ public class RandomGun : MonoBehaviour
     private float pitch = 1;
     private void Start()
     {
-        ammoMax = Random.Range(5, 50);
-        barrel.transform.localScale = new Vector3(1, Random.Range(0, 10), 1);
-        barrelLenght = barrel.transform.localScale.y;
+        //ammoMax = Random.Range(5, 50);
+        //barrel.transform.localScale = new Vector3(1, Random.Range(0, 10), 1);
+        //barrelLenght = barrel.transform.localScale.y;
 
-        color = Random.Range(0.196f, 0.784f);
-        baseRend.GetComponent<SpriteRenderer>().color =  new Color(color,color,color, 1);
-        barrelRend.GetComponent<SpriteRenderer>().color = new Color(color, color, color, 1);
+        //color = Random.Range(0.196f, 0.784f);
+        //baseRend.GetComponent<SpriteRenderer>().color =  new Color(color,color,color, 1);
+        //barrelRend.GetComponent<SpriteRenderer>().color = new Color(color, color, color, 1);
 
-        ammo = ammoMax;
-        accuracy = (accuracy / ((barrelLenght / accuracy) + 1)) + (ammoMax / accuracy) / accuracy; ;
-        bulletForce = 20 * ((barrelLenght / 10) + 1);
-        reloadTime = 2 + (ammoMax / 10) * ((barrelLenght / 10) + 1);
+        //ammo = ammoMax;
+        //accuracy = (accuracy / ((barrelLenght / accuracy) + 1)) + (ammoMax / accuracy) / accuracy; ;
+        //bulletForce = 20 * ((barrelLenght / 10) + 1);
+        //reloadTime = 2 + (ammoMax / 10) * ((barrelLenght / 10) + 1);
 
 
         recoil = (recoil - (barrelLenght * 0.01f)) * 10;
 
-        #region Lad ikke Eskil eller Blom Se dette
-        #region Jeg mener det
 
         if (ammoMax > 9)
         {
@@ -111,8 +109,7 @@ public class RandomGun : MonoBehaviour
                 }
             }
         }
-        #endregion
-        #endregion
+
         magSize = new Vector3(magX, magY, 1);
 
         pitch = 1 + (Random.Range(-0.30f, 0.31f));
