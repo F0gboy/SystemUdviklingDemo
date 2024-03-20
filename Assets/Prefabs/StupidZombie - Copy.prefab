@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3434114760462347651}
   - component: {fileID: 3801656956037495801}
   m_Layer: 6
-  m_Name: StupidZombie
+  m_Name: StupidZombie - Copy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
