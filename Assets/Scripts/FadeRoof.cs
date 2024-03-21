@@ -9,6 +9,9 @@ public class FadeRoof : MonoBehaviour
     private MeshRenderer Roof;
     private Collider RoofCollider; // Add a reference to the roof's collider
 
+    //Defined minimum and maximum fog distances.
+    private const float minDistance = 2f, maxDistance = 3f;
+
     private void Start()
     {
         Player = GameObject.Find("Player");
@@ -21,10 +24,6 @@ public class FadeRoof : MonoBehaviour
         // Use ClosestPoint to find the nearest point on the roof's collider to the player
         Vector3 closestPoint = RoofCollider.ClosestPoint(Player.transform.position);
         float distance = Vector3.Distance(Player.transform.position, closestPoint);
-        
-        // Define the minimum and maximum distances
-        float minDistance = 2f;
-        float maxDistance = 3f;
 
         // Normalize the distance to a 0-1 range
         float normalizedDistance = Mathf.Clamp01((distance - minDistance) / (maxDistance - minDistance));
