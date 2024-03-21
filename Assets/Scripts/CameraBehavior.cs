@@ -44,7 +44,7 @@ public class CameraBehavior : MonoBehaviour
     [SerializeField]
     private GameObject parent;
 
-
+    [SerializeField]
     Vector3 cameraScale = new Vector3(3.5f, 2);
     Vector3 unboundedPosition;
     Vector3 targetPos;

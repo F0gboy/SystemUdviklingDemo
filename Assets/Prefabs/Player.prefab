@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8570677841420925698}
   - component: {fileID: 9113346217881949031}
   - component: {fileID: 4602380762481270969}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BloodCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 4660567289865852312}
   - component: {fileID: 8784191135626988140}
   - component: {fileID: 4279772360136761896}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8983129748883363757}
   - component: {fileID: 3486803573640596018}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Weapons
   m_TagString: Weapons
   m_Icon: {fileID: 0}
@@ -409,6 +409,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaveController (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3188452620185871917, guid: eee8876e73e028141944803d7a4770dd, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -475,6 +479,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaveController (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3188452620185871917, guid: eee8876e73e028141944803d7a4770dd, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -540,6 +548,10 @@ PrefabInstance:
     - target: {fileID: 3188452620185871917, guid: eee8876e73e028141944803d7a4770dd, type: 3}
       propertyPath: m_Name
       value: WaveController (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3188452620185871917, guid: eee8876e73e028141944803d7a4770dd, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -610,6 +622,10 @@ PrefabInstance:
     - target: {fileID: 3188452620185871917, guid: eee8876e73e028141944803d7a4770dd, type: 3}
       propertyPath: m_Name
       value: WaveController
+      objectReference: {fileID: 0}
+    - target: {fileID: 3188452620185871917, guid: eee8876e73e028141944803d7a4770dd, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
