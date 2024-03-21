@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7048296445864702837}
   - component: {fileID: 2920748433547116940}
   - component: {fileID: 8756873908551099821}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 2bd685e6192129d47be30c2ca76eff82, type: 3}
   m_Color: {r: 1, g: 0, b: 0.046170235, a: 1}
   m_FlipX: 0
@@ -135,8 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 450f8d6dfe4ebc9468af443834765eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alive: 1
   health: 5
   damage: 2
+  detectionRange: 6
 --- !u!50 &2920748433547116940
 Rigidbody2D:
   serializedVersion: 4
@@ -174,7 +176,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -334000983
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

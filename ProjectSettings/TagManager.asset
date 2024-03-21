@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Weapons
   layers:
   - Default
   - TransparentFX
@@ -11,12 +12,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Zombie
+  - Bullet
+  - ShardsCasing
+  - Obstacle
+  - CameraTrigger
+  - Player
   - 
   - 
   - 
