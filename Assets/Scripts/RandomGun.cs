@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class RandomGun : MonoBehaviour
 {
+    #region Variables
     private float magX = 0.15f;
     private float magY = 0.1f;
     private Vector3 magSize;
     public bool reloading = false;
     private float barrelLenght;
     public bool pickedUp = false;
-    float color;
     int scopeNum;
 
     [Header("Gun Stats")]
@@ -18,7 +18,7 @@ public class RandomGun : MonoBehaviour
     public int ammoMax;
     public float reloadTime;
     public float bulletForce = 10f;
-    
+
     [Tooltip("How inaccurate the weapon is")]
     public float accuracy = 10;
 
@@ -40,7 +40,7 @@ public class RandomGun : MonoBehaviour
     public Transform ejectPoint;
     public Quaternion ejectQuaternion;
 
-    [Header("Gun Sounds")]  
+    [Header("Gun Sounds")]
     public AudioSource reloadSound;
 
     [Header("Gun Renderer")]
@@ -48,69 +48,59 @@ public class RandomGun : MonoBehaviour
     public GameObject barrelRend;
 
     private float pitch = 1;
+    private SpriteRenderer baseRenderer;
+    private SpriteRenderer barrelRenderer;
+    #endregion
+
+    // Start is called before the first frame update
     private void Start()
     {
-        //ammoMax = Random.Range(5, 50);
-        //barrel.transform.localScale = new Vector3(1, Random.Range(0, 10), 1);
-        //barrelLenght = barrel.transform.localScale.y;
-
-        //color = Random.Range(0.196f, 0.784f);
-        //baseRend.GetComponent<SpriteRenderer>().color =  new Color(color,color,color, 1);
-        //barrelRend.GetComponent<SpriteRenderer>().color = new Color(color, color, color, 1);
-
-        //ammo = ammoMax;
-        //accuracy = (accuracy / ((barrelLenght / accuracy) + 1)) + (ammoMax / accuracy) / accuracy; ;
-        //bulletForce = 20 * ((barrelLenght / 10) + 1);
-        //reloadTime = 2 + (ammoMax / 10) * ((barrelLenght / 10) + 1);
-
+        baseRenderer = baseRend.GetComponent<SpriteRenderer>();
+        barrelRenderer = barrelRend.GetComponent<SpriteRenderer>();
 
         recoil = (recoil - (barrelLenght * 0.01f)) * 10;
-
-
-        if (ammoMax > 9)
+        switch (ammoMax)
         {
-            magX = magX + 0f;
-            magY = magY + 0.1f;
-            if (ammoMax > 14)
-            {
-                magX = magX + 0f;
-                magY = magY + 0.1f;
-                if (ammoMax > 19)
-                {
-                    magX = magX + 0f;
-                    magY = magY + 0.1f;
-                    if (ammoMax > 24)
-                    {
-                        magX = magX + 0.05f;
-                        magY = magY + 0.1f;
-                        if (ammoMax > 29)
-                        {
-                            magX = magX + 0.05f;
-                            magY = magY - 0.1f;
-                            if (ammoMax > 34)
-                            {
-                                magX = magX + 0.15f;
-                                magY = magY + 0f;
-                                if (ammoMax > 39)
-                                {
-                                    magX = magX + 0.1f;
-                                    magY = magY + 0f;
-                                    if (ammoMax > 44)
-                                    {
-                                        magX = magX + 0.1f;
-                                        magY = magY + 0f;
-                                        if (ammoMax > 49)
-                                        {
-                                            magX = magX + 0f;
-                                            magY = magY + 0.1f;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            case int a when ammoMax > 9:
+                magY += 0.1f;
+                break;
+
+            case int b when ammoMax > 14:
+                magY += 0.2f;
+                break;
+
+            case int c when ammoMax > 19:
+                magY += 0.3f;
+                break;
+
+            case int d when ammoMax > 24:
+                magX += 0.05f;
+                magY += 0.4f;
+                break;
+
+            case int e when ammoMax > 29:
+                magX += 0.1f;
+                magY += 0.5f;
+                break;
+
+            case int f when ammoMax > 34:
+                magX += 0.15f;
+                magY += 0.5f;
+                break;
+
+            case int g when ammoMax > 39:
+                magX += 0.25f;
+                magY += 0.5f;
+                break;
+
+            case int h when ammoMax > 44:
+                magX += 0.35f;
+                magY += 0.5f;
+                break;
+
+            case int i when ammoMax > 44:
+                magX += 0.45f;
+                break;
         }
 
         magSize = new Vector3(magX, magY, 1);
@@ -118,6 +108,7 @@ public class RandomGun : MonoBehaviour
         pitch = 1 + (Random.Range(-0.30f, 0.31f));
 
         scopeNum = Random.Range(1, 6);
+
 
         if (scopeNum == 1)
         {
@@ -139,32 +130,35 @@ public class RandomGun : MonoBehaviour
         {
             scopes[3].SetActive(true);
         }
-
     }
-
 
     // Update is called once per frame
     void Update()
     {
-        //Controls
-        if (Input.GetKeyDown(KeyCode.Mouse0) && reloading == false && pickedUp == true) { if (ammo == 0) { StartCoroutine("Reload"); } else { Shoot(); ammo--; } };
-        if (Input.GetKeyDown(KeyCode.R) && reloading == false && pickedUp == true) { StartCoroutine("Reload"); }
-
-
-        if (pickedUp == true)
+        if (pickedUp == false)
         {
-            baseRend.GetComponent<SpriteRenderer>().sortingOrder = 1;
-            barrelRend.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            baseRenderer.sortingOrder = 0;
+            barrelRenderer.sortingOrder = 0;
+            return;
         }
-        else
+
+        baseRenderer.sortingOrder = 1;
+        barrelRenderer.sortingOrder = 1;
+
+        if (reloading == false)
         {
-            baseRend.GetComponent<SpriteRenderer>().sortingOrder = 0;
-            barrelRend.GetComponent<SpriteRenderer>().sortingOrder = 0;
+            //Controls
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                if (ammo == 0)
+                    StartCoroutine("Reload");
+                else
+                    Shoot(); ammo--;
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+                StartCoroutine("Reload");
         }
-        
-
-
-
     }
 
     #region Shooting
@@ -181,7 +175,7 @@ public class RandomGun : MonoBehaviour
         ejectQuaternion.z = ejectQuaternion.z + Random.Range(-2.0f, 2.0f);
 
         Flash.Play();
-        
+
 
 
         //Casing Ejection
@@ -193,7 +187,7 @@ public class RandomGun : MonoBehaviour
         rb2.AddForce(ejectPoint.right * Random.Range(-1.0f, 1.0f), ForceMode2D.Impulse);
         rb2.AddTorque(180 + Random.Range(-10, 10), ForceMode2D.Impulse);
         Debug.Log(light.activeSelf);
-        
+
     }
 
     #endregion
@@ -221,11 +215,6 @@ public class RandomGun : MonoBehaviour
         ammo = ammoMax;
         reloadSound.Stop();
         reloading = false;
-
-        
-
-
-
     }
     #endregion
 
