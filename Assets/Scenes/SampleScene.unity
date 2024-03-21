@@ -18142,6 +18142,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3297443979841400656, guid: 4b4e8c48251fa474e92332b6ece7c549, type: 3}
   m_PrefabInstance: {fileID: 665332776}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1767652437 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7933406925365720276, guid: 83afc8e4da57efb4cab132fd8a5d7346, type: 3}
+  m_PrefabInstance: {fileID: 3114321405916406624}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1782597146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18231,6 +18236,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4026246409480579435, guid: 50c9ff6ae34cd8d4b922c83bb5fe0ae0, type: 3}
   m_PrefabInstance: {fileID: 65881341}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1795822417 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8279557771921951549, guid: 83afc8e4da57efb4cab132fd8a5d7346, type: 3}
+  m_PrefabInstance: {fileID: 3114321405916406624}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1805869115 stripped
 Transform:
@@ -21989,7 +21999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletImage: {fileID: 640200456469919610}
   gun: {fileID: 0}
-  inventory: {fileID: 0}
+  inventory: {fileID: 1795822417}
 --- !u!1 &640200456703376639
 GameObject:
   m_ObjectHideFlags: 0
@@ -22138,7 +22148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbarImage: {fileID: 640200457028773072}
-  player: {fileID: 0}
+  player: {fileID: 1767652437}
 --- !u!1 &640200456733156767
 GameObject:
   m_ObjectHideFlags: 0
