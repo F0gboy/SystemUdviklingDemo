@@ -9407,8 +9407,8 @@ MonoBehaviour:
   disableWhenExit: 1
   boundsSize: {x: 9.32, y: 4.78}
   offset: {x: 4.08, y: 0}
-  softBounds: {x: 5.55, y: 4.59}
-  softOffset: {x: 0.44, y: 0}
+  softBounds: {x: 4.95, y: 4.59}
+  softOffset: {x: 0, y: 0}
 --- !u!1 &1591460338
 GameObject:
   m_ObjectHideFlags: 0
