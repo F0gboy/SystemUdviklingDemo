@@ -382,6 +382,10 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7344297705385198337, guid: 7a848318e801b184d957cd91d043e26b, type: 3}
+      propertyPath: accuracy
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344297705385198337, guid: 7a848318e801b184d957cd91d043e26b, type: 3}
       propertyPath: pickedUp
       value: 1
       objectReference: {fileID: 0}
@@ -11430,7 +11434,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42cd00a0aa37f394a99732bb5c492832, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.278
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -11627,7 +11631,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42cd00a0aa37f394a99732bb5c492832, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.278
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -12153,7 +12157,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42cd00a0aa37f394a99732bb5c492832, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.278
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -12274,7 +12278,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42cd00a0aa37f394a99732bb5c492832, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.278
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -12597,7 +12601,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42cd00a0aa37f394a99732bb5c492832, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.278
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -12794,7 +12798,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42cd00a0aa37f394a99732bb5c492832, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.278
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -13072,7 +13076,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42cd00a0aa37f394a99732bb5c492832, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.278
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -16346,7 +16350,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42cd00a0aa37f394a99732bb5c492832, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.278
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -16558,7 +16562,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42cd00a0aa37f394a99732bb5c492832, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.278
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -16738,7 +16742,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42cd00a0aa37f394a99732bb5c492832, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.278
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -17260,7 +17264,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42cd00a0aa37f394a99732bb5c492832, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.278
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -17457,7 +17461,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42cd00a0aa37f394a99732bb5c492832, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.278
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -17659,7 +17663,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42cd00a0aa37f394a99732bb5c492832, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.278
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -17760,7 +17764,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42cd00a0aa37f394a99732bb5c492832, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.278
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -17957,7 +17961,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42cd00a0aa37f394a99732bb5c492832, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.278
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -18227,7 +18231,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42cd00a0aa37f394a99732bb5c492832, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.278
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -22,20 +22,29 @@ public class BreakerableWalls : MonoBehaviour, IDamageable
 
     public void TakeDamage(int amount)
     {
-        
-        audioSource.clip = breakSound; // Ensure the clip is assigned
-        audioSource.pitch = Random.Range(0.9f, 1.1f); // Adjust these values as needed
-        audioSource.Play();
-        
         health -= amount;
         if (health <= 0) Breake();
     }
 
     private void Breake()
     {
+        // Create a new temporary GameObject
+        GameObject tempAudioSource = new GameObject("TempAudio");
+        AudioSource audioSource = tempAudioSource.AddComponent<AudioSource>();
+    
+        // Copy your audio source settings if needed (e.g., volume, spatial blend, etc.)
+        audioSource.volume = 0.1f;
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
+        audioSource.spatialBlend = this.audioSource.spatialBlend;
 
-        Console.WriteLine("PLAYED");
-        
+        // Assign the break sound and play it
+        audioSource.clip = breakSound;
+        audioSource.Play();
+
+        // Destroy the temporary audio source after the clip finishes
+        Destroy(tempAudioSource, audioSource.clip.length);
+
+        // Now destroy the game object without worrying about stopping the sound
         Destroy(gameObject);
     }
 }
