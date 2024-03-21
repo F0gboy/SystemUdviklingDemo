@@ -34,14 +34,16 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
+        if (alive == false) return;
+
         //Move towards player if it's within radius
-        //Vector3 dir = player.transform.position - transform.position;
-        //if (dir.magnitude < detectionRange)
-        //    transform.position += dir.normalized * Time.deltaTime;
+        Vector3 dir = player.transform.position - transform.position;
+        if (dir.magnitude < detectionRange)
+            agent.SetDestination(player.transform.position);
 
         //Update target direction
-        if (alive == true && player.GetComponent<PlayerScript>().died == false)
-            agent.SetDestination(player.transform.position);
+        //if (player.GetComponent<PlayerScript>().died == false)
+        //    agent.SetDestination(player.transform.position);
 
     }
 
