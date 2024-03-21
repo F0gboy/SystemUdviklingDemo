@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class StupidZombie : MonoBehaviour
 {
-    public Transform playerTransform;
+    public Transform destination;
     private Rigidbody2D rb;
     GameObject player;
     private Vector2 movement;
@@ -13,12 +14,16 @@ public class StupidZombie : MonoBehaviour
     public bool alive = true;
     public GameObject bloodPool;
 
+    private NavMeshAgent agent;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
-        playerTransform = player.transform;
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateUpAxis = false;
+        agent.updateRotation = false;
     }
 
     // Update is called once per frame
@@ -38,32 +43,18 @@ public class StupidZombie : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().color = new Color32(136, 219, 135, 255);
             gameObject.GetComponent<Collider2D>().enabled = true;
         }
+
         if (alive == true)
         {
-            //Direction and Movement
-            Vector3 direction = playerTransform.position - transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            direction.Normalize();
-            movement = direction;
-            rb.rotation = angle;
+            if (!player.GetComponent<PlayerScript>().died)
+            {
+                agent.SetDestination(player.transform.position);
+            }
         }
-
-
-
     }
 
-    //Movement
     private void FixedUpdate()
     {
-        if (alive == true && player.GetComponent<PlayerScript>().died == false )
-        {
-            moveCharacter(movement);
-        }
-    }
 
-    void moveCharacter(Vector2 direction) 
-    {
-        rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
-
 }
