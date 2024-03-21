@@ -22771,12 +22771,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5990146544682163, guid: 89ff588497cdef542917f7e1ae460020, type: 3}
       propertyPath: orthographic size
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2905144264767613876, guid: 89ff588497cdef542917f7e1ae460020, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 5729117575293127479}
+    - target: {fileID: 2905144264767613876, guid: 89ff588497cdef542917f7e1ae460020, type: 3}
+      propertyPath: cameraScale.x
+      value: 5.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2905144264767613876, guid: 89ff588497cdef542917f7e1ae460020, type: 3}
+      propertyPath: cameraScale.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3422716670796411308, guid: 89ff588497cdef542917f7e1ae460020, type: 3}
       propertyPath: m_Name
       value: CamParent
