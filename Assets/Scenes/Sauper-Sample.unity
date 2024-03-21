@@ -12339,6 +12339,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3486803573640596018, guid: 83afc8e4da57efb4cab132fd8a5d7346, type: 3}
+      propertyPath: weapon1
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486803573640596018, guid: 83afc8e4da57efb4cab132fd8a5d7346, type: 3}
+      propertyPath: shooting1
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4148470054758426088, guid: 83afc8e4da57efb4cab132fd8a5d7346, type: 3}
       propertyPath: m_IsActive
       value: 0
