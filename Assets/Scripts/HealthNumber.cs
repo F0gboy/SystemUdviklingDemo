@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class HealthNumber : MonoBehaviour
 {
     public Image healthbarImage;
-    public GameObject player;
+    public PlayerScript player;
+
     float health;
     TextMeshProUGUI textBox;
     // Start is called before the first frame update
@@ -20,7 +21,7 @@ public class HealthNumber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health = player.GetComponent<PlayerScript>().Health;
+        health = player.Health;
         textBox.text = health.ToString();
         healthbarImage.fillAmount = health / 100;
     }
