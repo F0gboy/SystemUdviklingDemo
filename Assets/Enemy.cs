@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour, IDamageable
     protected Rigidbody2D rb;
     protected GameObject player;
     private NavMeshAgent agent;
+    
+    public AudioClip[] hitSounds; // Array of hit sounds
+    private AudioSource audioSource;
 
     [SerializeField] public bool alive = true;
     [SerializeField] protected int health = 5;
@@ -29,6 +32,8 @@ public class Enemy : MonoBehaviour, IDamageable
         agent.updateUpAxis = false;
         agent.updateRotation = false;
         player = GameObject.Find("Player");
+        
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -49,8 +54,21 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void TakeDamage(int amount)
     {
+        OnHit();
+        
         Health -= amount;
         if (Health <= 0) Die();
+    }
+    
+    public void OnHit()
+    {
+        if (hitSounds.Length > 0)
+        {
+            int index = Random.Range(0, hitSounds.Length);
+            
+            audioSource.pitch = Random.Range(0.9f, 1.1f); // Adjust these values as needed
+            audioSource.PlayOneShot(hitSounds[index]);
+        }
     }
 
     private void Die()
