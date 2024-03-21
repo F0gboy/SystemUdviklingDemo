@@ -89,10 +89,21 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         if (hitSounds.Length > 0)
         {
+            GameObject tempAudioSource = new GameObject("TempAudio_" + gameObject.name);
+            AudioSource tempAudio = tempAudioSource.AddComponent<AudioSource>();
+
+            // Copy properties from the existing AudioSource to maintain consistency
+            tempAudio.volume = audioSource.volume;
+            tempAudio.pitch = Random.Range(0.9f, 1.1f);
+            tempAudio.spatialBlend = audioSource.spatialBlend; // Preserve 3D sound settings if any
+
+            // Choose a random hit sound to play
             int index = Random.Range(0, hitSounds.Length);
-            
-            audioSource.pitch = Random.Range(0.9f, 1.1f); // Adjust these values as needed
-            audioSource.PlayOneShot(hitSounds[index]);
+            tempAudio.clip = hitSounds[index];
+            tempAudio.Play();
+
+            // Destroy the temporary AudioSource after the clip finishes
+            Destroy(tempAudioSource, hitSounds[index].length);
         }
     }
 
