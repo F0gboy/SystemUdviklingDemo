@@ -18,7 +18,10 @@ public class RandomGun : MonoBehaviour
     public int ammoMax;
     public float reloadTime;
     public float bulletForce = 10f;
+    
+    [Tooltip("How inaccurate the weapon is")]
     public float accuracy = 10;
+
     public float recoil = 0.1f;
     public float lightZeit = 0.3f;
 
