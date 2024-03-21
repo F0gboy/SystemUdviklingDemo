@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3434114760462347648}
   - component: {fileID: 3434114760462347649}
   - component: {fileID: 3434114760462347651}
+  - component: {fileID: -3605567246193575605}
   m_Layer: 6
   m_Name: StupidZombie - Copy
   m_TagString: Untagged
@@ -100,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f7c1ecce0e6aa4f96046fa62fe7a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
+  destination: {fileID: 0}
   moveSpeed: 2
   health: 3
   alive: 1
@@ -167,6 +168,28 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!195 &-3605567246193575605
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3434114760462347653}
+  m_Enabled: 1
+  m_AgentTypeID: -334000983
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &3434114761813267315
 GameObject:
   m_ObjectHideFlags: 0
