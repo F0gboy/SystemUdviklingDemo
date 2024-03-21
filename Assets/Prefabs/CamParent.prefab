@@ -86,8 +86,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2840992701597518703}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -95,7 +95,7 @@ Transform:
   - {fileID: 1155659399035602638}
   - {fileID: 1025152216491706429}
   - {fileID: 4597367717876430576}
-  m_Father: {fileID: 347233642173968461}
+  m_Father: {fileID: 4589905820438959418}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3105678796564496247
 GameObject:
@@ -128,8 +128,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8496136444790612759}
+  m_Children: []
   m_Father: {fileID: 4589905820438959418}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &5990146544682163
@@ -213,6 +212,17 @@ MonoBehaviour:
   targets: []
   player: {fileID: 0}
   parent: {fileID: 3422716670796411308}
+  bounds:
+    xMin: 0
+    xMax: 0
+    yMin: 0
+    yMax: 0
+  softBounds:
+    xMin: 0
+    xMax: 0
+    yMin: 0
+    yMax: 0
+  boundsEnabled: 0
 --- !u!1 &3422716670796411308
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +253,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 347233642173968461}
+  - {fileID: 8496136444790612759}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5132406040410558755
