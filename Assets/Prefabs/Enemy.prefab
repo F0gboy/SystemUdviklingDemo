@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3669321377557167544}
   - component: {fileID: 7048296445864702837}
   - component: {fileID: 2920748433547116940}
+  - component: {fileID: 8756873908551099821}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -134,6 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 450f8d6dfe4ebc9468af443834765eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 5
+  damage: 2
 --- !u!50 &2920748433547116940
 Rigidbody2D:
   serializedVersion: 4
@@ -161,3 +164,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!195 &8756873908551099821
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7259902700965139209}
+  m_Enabled: 1
+  m_AgentTypeID: -334000983
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
