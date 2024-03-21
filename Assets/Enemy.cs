@@ -44,15 +44,30 @@ public class Enemy : MonoBehaviour, IDamageable
         if (alive == false) return;
 
         //Update target if player is within radius
-        Vector3 dir = player.transform.position - transform.position;
-        if (dir.magnitude < detectionRange)
-            agent.SetDestination(player.transform.position);
+        AI();
 
         //Exists so enemy can't deal damage every frame
         if (cooldown > 0) cooldown -= Time.deltaTime;
+
+
+        if (agent.velocity != Vector3.zero)
+            Rotate(gameObject, agent.velocity + transform.position, 90);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void AI()
+    {
+        if (!alive || player.GetComponent<PlayerScript>().died)
+        {
+            agent.SetDestination(transform.position);
+            return;
+        }
+
+        Vector3 dir = player.transform.position - transform.position;
+        if (dir.magnitude < detectionRange)
+            agent.SetDestination(player.transform.position);
+    }
+
+        private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject == player && cooldown <= 0)
         {
@@ -84,5 +99,14 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Die()
     {
         Destroy(gameObject);
+    }
+
+    void Rotate(GameObject objectToRotate, Vector3 objectToRotateTowards, float angleOffset)
+    {
+        //Finds the relative angle between two objects/positions and converts it to quaternion and applys offset
+        var relativePos = objectToRotateTowards - objectToRotate.transform.position;
+        var angle = Mathf.Atan2(relativePos.y, relativePos.x) * Mathf.Rad2Deg;
+        var rotation = Quaternion.AngleAxis(angle + angleOffset, Vector3.forward);
+        objectToRotate.transform.rotation = rotation;
     }
 }
