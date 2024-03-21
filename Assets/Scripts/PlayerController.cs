@@ -29,6 +29,15 @@ public partial class PlayerController : MonoBehaviour
     private GameObject lastParticle;
     public float rgbOffset, particleIntencitySneaking, particleIntencityWalking, particleIntencityRunning;
     public LayerMask floorHitLayer;
+    
+    [Header("Audio Settings")]
+    public AudioClip[] footstepSounds; // Assign two footstep sounds in the inspector
+    private AudioSource audioSource;
+    public float footstepDelayWalk = 0.5f; // Delay between steps while walking
+    public float footstepDelayRun = 0.3f; // Delay between steps while running
+    public float footstepDelaySneak = 0.7f; // Delay between steps while sneaking
+    private float nextFootstepTime = 0f;
+    private int lastFootstepIndex = 0; // To track the last played footstep sound
 
     private void Start()
     {
@@ -40,11 +49,13 @@ public partial class PlayerController : MonoBehaviour
         System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
         #endregion
 
-        //Sets basic variables
+        // Your existing start setup
         rb = GetComponent<Rigidbody2D>();
         health = maxHealth;
         speed = walkSpeed;
         state = State.walking;
+
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     void Update()
@@ -151,9 +162,16 @@ public partial class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Transforms the position of the player
+        // Your existing movement code
         float step = speed * Time.fixedDeltaTime;
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * step;
+        Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        rb.velocity = movement * step;
+
+        // Play footstep sounds if moving
+        if (movement.magnitude > 0 && Time.time >= nextFootstepTime)
+        {
+            PlayFootstepSound();
+        }
     }
 
     //Updates the burst settings of the relative particlesystem
@@ -237,6 +255,28 @@ public partial class PlayerController : MonoBehaviour
         var rotation = Quaternion.AngleAxis(angle + angleOffset, Vector3.forward);
         objectToRotate.transform.rotation = rotation;
     }
+    
+    void PlayFootstepSound()
+    {
+        float delay = footstepDelayWalk; // Default to walking speed
+        switch (state)
+        {
+            case State.sneaking:
+                delay = footstepDelaySneak;
+                break;
+            case State.running:
+                delay = footstepDelayRun;
+                break;
+        }
+
+        // Alternate between the two footstep sounds
+        lastFootstepIndex = 1 - lastFootstepIndex; // Alternates between 0 and 1
+        audioSource.pitch = Random.Range(0.85f, 1.15f); // Add slight random pitch variation
+        audioSource.PlayOneShot(footstepSounds[lastFootstepIndex]);
+
+        nextFootstepTime = Time.time + delay;
+    }
+
 
     public void TakeDamage(float amount)
     {
