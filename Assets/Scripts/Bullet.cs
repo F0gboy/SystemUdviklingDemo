@@ -18,6 +18,10 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        IDamageable hitObject = collision.gameObject.GetComponent<IDamageable>();
+        if (hitObject != null) hitObject.TakeDamage(10);
+        
+
         if (collision.gameObject.layer == 6) 
         { 
             Blood.Play(); 

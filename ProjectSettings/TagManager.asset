@@ -15,9 +15,9 @@ TagManager:
   - Zombie
   - Bullet
   - ShardsCasing
-  - 
-  - 
-  - 
+  - Obstacle
+  - CameraTrigger
+  - Player
   - 
   - 
   - 
