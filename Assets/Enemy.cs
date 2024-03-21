@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public interface IDamageable
 {
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] protected int detectionRange = 10;
     public int Health { get => health; set { health = value; if (health < 0) health = 0; } } //Sets to 0 if it goes negative
     public int Damage { get => damage; set => damage = value; }
+    public bool aggroPlayer = true;
 
     // Start is called before the first frame update
     void Start()
@@ -39,10 +41,29 @@ public class Enemy : MonoBehaviour, IDamageable
         //if (dir.magnitude < detectionRange)
         //    transform.position += dir.normalized * Time.deltaTime;
 
-        //Update target direction
-        if (alive == true && player.GetComponent<PlayerScript>().died == false)
-            agent.SetDestination(player.transform.position);
+        AI();
 
+        if (agent.velocity != Vector3.zero)
+            Rotate(gameObject, agent.velocity + transform.position, 90);
+    }
+
+    private void AI()
+    {
+        if (!aggroPlayer)
+        {
+            if (agent.velocity != Vector3.zero)
+                agent.SetDestination(transform.position);
+            return;
+        }
+
+        if (!alive || player.GetComponent<PlayerScript>().died)
+        {
+            aggroPlayer = false;
+            agent.SetDestination(transform.position);
+            return;
+        }
+
+        agent.SetDestination(player.transform.position);
     }
 
     public void TakeDamage(int amount)
@@ -54,5 +75,14 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Die()
     {
         Destroy(gameObject);
+    }
+
+    void Rotate(GameObject objectToRotate, Vector3 objectToRotateTowards, float angleOffset)
+    {
+        //Finds the relative angle between two objects/positions and converts it to quaternion and applys offset
+        var relativePos = objectToRotateTowards - objectToRotate.transform.position;
+        var angle = Mathf.Atan2(relativePos.y, relativePos.x) * Mathf.Rad2Deg;
+        var rotation = Quaternion.AngleAxis(angle + angleOffset, Vector3.forward);
+        objectToRotate.transform.rotation = rotation;
     }
 }
