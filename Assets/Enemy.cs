@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         rb = GetComponent<Rigidbody2D>();
         agent = GetComponent<NavMeshAgent>();
+        agent.updateUpAxis = false;
+        agent.updateRotation = false;
         player = GameObject.Find("Player");
     }
 
