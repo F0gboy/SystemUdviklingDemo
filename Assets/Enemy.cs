@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public interface IDamageable
 {
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private AudioSource audioSource;
 
     [SerializeField] public bool alive = true;
+    [SerializeField] public bool isBoss = false;
     [SerializeField] protected int health = 5;
     [SerializeField] protected int damage = 2;
     [SerializeField] protected float damageRate = 0.5f;
@@ -120,6 +122,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Die()
     {
+        if (isBoss == true)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //Load next scene
+
         Destroy(gameObject);
     }
 
