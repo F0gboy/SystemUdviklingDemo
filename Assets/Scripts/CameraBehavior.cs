@@ -94,7 +94,7 @@ public class CameraBehavior : MonoBehaviour
 
             targetPos.x = Mathf.Clamp(targetPos.x, softBounds.xMin, softBounds.xMax);
             targetPos.y = Mathf.Clamp(targetPos.y, softBounds.yMin, softBounds.yMax);
-            unboundedPosition = Vector3.Lerp(unboundedPosition, targetPos, fractionOfJourney);
+            unboundedPosition = Vector3.Lerp(unboundedPosition, targetPos, fractionOfJourney* Time.deltaTime);
             transform.position = new Vector3(
                 Mathf.Clamp(unboundedPosition.x, bounds.xMin, bounds.xMax),
                 Mathf.Clamp(unboundedPosition.y, bounds.yMin, bounds.yMax),
@@ -103,7 +103,7 @@ public class CameraBehavior : MonoBehaviour
         else
         {
             unboundedPosition = new Vector3(Mathf.Lerp(unboundedPosition.x, Mathf.Lerp(xStartPoint.position.x, xEndPoint.position.x, Input.mousePosition.x / (float)Screen.width), fractionOfJourney),
-                                                  Mathf.Lerp(unboundedPosition.y, Mathf.Lerp(yStartPoint.position.y, yEndPoint.position.y, Input.mousePosition.y / (float)Screen.height), fractionOfJourney),
+                                                  Mathf.Lerp(unboundedPosition.y, Mathf.Lerp(yStartPoint.position.y, yEndPoint.position.y, Input.mousePosition.y / (float)Screen.height), fractionOfJourney* Time.deltaTime),
                                                   transform.position.z);
             transform.position = unboundedPosition;
         }
