@@ -24875,6 +24875,10 @@ PrefabInstance:
       propertyPath: cameraScale.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2905144264767613876, guid: 89ff588497cdef542917f7e1ae460020, type: 3}
+      propertyPath: fractionOfJourney
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3422716670796411308, guid: 89ff588497cdef542917f7e1ae460020, type: 3}
       propertyPath: m_Name
       value: CamParent
