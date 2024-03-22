@@ -185,9 +185,7 @@ public class RandomGun : MonoBehaviour
         shotSound.pitch = pitch;
         rb2.AddForce(ejectPoint.up * (bulletForce / 6.5f + Random.Range(-2.0f, 2.0f)), ForceMode2D.Impulse);
         rb2.AddForce(ejectPoint.right * Random.Range(-1.0f, 1.0f), ForceMode2D.Impulse);
-        rb2.AddTorque(180 + Random.Range(-10, 10), ForceMode2D.Impulse);
-        Debug.Log(light.activeSelf);
-
+        rb2.AddTorque(180 + Random.Range(-10, 10), ForceMode2D.Impulse);        
     }
 
     #endregion

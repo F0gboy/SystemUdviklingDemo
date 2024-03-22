@@ -54,6 +54,10 @@ public class CameraBehavior : MonoBehaviour
     [SerializeField]
     bool boundsEnabled = false;
 
+    private void Start()
+    {
+        unboundedPosition = transform.position;
+    }
 
     private void Update()
     {

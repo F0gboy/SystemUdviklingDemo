@@ -26,16 +26,27 @@ public class Enemy : MonoBehaviour, IDamageable
     public int Health { get => health; set { health = value; if (health < 0) health = 0; } } //Sets to 0 if it goes negative
     public int Damage { get => damage; set => damage = value; }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateUpAxis = false;
         agent.updateRotation = false;
         player = GameObject.Find("Player");
-        
+
         audioSource = gameObject.AddComponent<AudioSource>();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        //rb = GetComponent<Rigidbody2D>();
+        //agent = GetComponent<NavMeshAgent>();
+        //agent.updateUpAxis = false;
+        //agent.updateRotation = false;
+        //player = GameObject.Find("Player");
+        
+        //audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -62,8 +73,8 @@ public class Enemy : MonoBehaviour, IDamageable
             return;
         }
 
-        Vector3 dir = player.transform.position - transform.position;
-        if (dir.magnitude < detectionRange)
+        ////Vector3 dir = player.transform.position - transform.position;
+        ////if (dir.magnitude < detectionRange)
             agent.SetDestination(player.transform.position);
     }
 
